@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Runtime.Serialization;
 
 
 class program
@@ -9,6 +10,9 @@ class program
         int Opcion = 0;
         Random random = new Random();
         int LimiteMaximo = 0;
+        int NumeroSecreto = 0;
+        int NumeroUsuario = 0;
+        bool Ganador = false;
 
         do
         {
@@ -22,6 +26,8 @@ class program
             {
                 case 1:
                  int Dificultad = 0;
+                
+
                  Console.WriteLine("Excelente, que dificultad desea jugar");
                     do
                     {
@@ -30,21 +36,47 @@ class program
                         Console.WriteLine("3. Difícil");
                         Console.WriteLine("4. Salir al Menú");
                         Dificultad = int.Parse(Console.ReadLine());
-
-                        int NumeroSecreto1 = random.Next(1,11);
-                        bool Ganador1 = false;
-                        while(Dificultad == 1 && Ganador1 == false)
+                        
+                        if (Dificultad != 4)
                         {
                             
-                            Console.WriteLine("Ingrese Número a Adivinar");
-                            int NumeroUsuario1 = int.Parse(Console.ReadLine());
+                        
+                         if (Dificultad == 1)
+                         {
+                            LimiteMaximo = 11;
+                         }
+                        
+                         if (Dificultad == 2)
+                         {
+                            LimiteMaximo = 51;
+                         }
 
-                            if (NumeroUsuario1 > NumeroSecreto1)
+                         if (Dificultad == 3)
+                         {
+                            LimiteMaximo = 101;
+                         }
+
+                        
+
+                         NumeroSecreto = random.Next(1, LimiteMaximo);
+                         Ganador = false;
+                        
+
+
+                        
+                          while(!Ganador)
+                         {
+                            
+                            Console.WriteLine("Ingrese Número a Adivinar");
+                            NumeroUsuario = int.Parse(Console.ReadLine());
+                            
+
+                            if (NumeroUsuario> NumeroSecreto)
                             {
                                 Console.WriteLine("El Numero Secreto Es Menor");
                                 
                             }
-                            else if(NumeroUsuario1 < NumeroSecreto1)
+                            else if(NumeroUsuario< NumeroSecreto)
                             {
                                 Console.WriteLine("El Número Secreto Es Mayor");
                                 
@@ -52,60 +84,15 @@ class program
                             else
                             {
                                 Console.WriteLine(" ¡FELICIDADES, HAS GANADO EL JUEGO!");
-                                Ganador1 = true;
+                                Ganador = true;
                             }
                         
-                        }
+                         }
+                        } 
 
-                      int NumeroSecreto2 = random.Next(1,51);
-                      bool Ganador2 = false;
-                     while (Dificultad == 2 && Ganador2 == false)
-                        {
-                            
-                            Console.WriteLine("Ingrese Numero a Adivinar");
-                            int NumeroUsuario2 = int.Parse(Console.ReadLine());
-
-                            if(NumeroUsuario2 > NumeroSecreto2)
-                            {
-                                Console.WriteLine("El Número Secreto Es Menor");
-                                
-                            }
-                            else if (NumeroUsuario2 < NumeroSecreto2)
-                            {
-                                Console.WriteLine("El Numero Secreto Es Mayor");
-                                
-                            }
-                            else
-                            {
-                                Console.WriteLine("FELICIDADES HAS GANADO EL JUEGO");
-                                Ganador2 = true;
-                            }
-
-                         
-                        }
-                        int NumeroSecreto3 = random.Next(1,101);
-                        while(Dificultad == 3)
-                        {
+               
                            
-                            Console.WriteLine("Ingrese Numero a Adivinar");
-                            int NumeroUsuario3 = int.Parse(Console.ReadLine());
-                             
-                             if (NumeroUsuario3 > NumeroSecreto3)
-                            {
-                                Console.WriteLine("El Número Secreto Es Menor");
-                                
-                            }
-                            else if (NumeroUsuario3 < NumeroSecreto3)
-                            {
-                                Console.WriteLine("El Número Secreto Es Mayor");
-                                
-                                
-                            }
-                            else
-                            {
-                                Console.WriteLine("FELICIDADES, HAS GANADO EL JUEGO");
-                            }
-                        }
+                         
                     }while(Dificultad != 4);
                 break;
 
